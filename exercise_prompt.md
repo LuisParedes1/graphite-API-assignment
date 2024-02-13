@@ -16,8 +16,9 @@ Example response:
 "term": "term1",
 "tf-idf": 2.5
 },
-...
-]
+
+    ]
+
 }
 
 Please provide instructions for running the API locally and let us
