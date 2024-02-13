@@ -16,6 +16,26 @@ To run the notebook:
 - Install pandas with `!pip install pandas`
 - Run the cells (cntl+enter)
 
-# Execute the program
+# Installing Dependencies
 
-# Open in Swagger
+This project was generated using fastapi framework.
+
+Install dependencies from requirements.txt using
+
+`pip install -r requirements.txt`
+
+If you use Anaconda for environment management, you can recreate the environment using
+
+`conda env create --file requirements.txt`
+
+## Execute the API
+
+By default FastAPI uses address `127.0.0.1` and port `8000`
+
+In the root directory, run `uvicorn main:app --reload`
+
+This will enable the endpoint at `http://127.0.0.1:8000`
+
+# Open API Documentation in OpenAPI (Swagger)
+
+You can find the API's documentation at `http://127.0.0.1:8000/docs`
