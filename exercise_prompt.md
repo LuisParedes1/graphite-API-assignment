@@ -20,6 +20,5 @@ Example response:
 ]
 }
 
-Please provide instructions for running the API locally and let us
-know how you tested it. You may use standard and open-source
-libraries, and you may consult online materials or books.
+Please provide instructions for running the API locally and let us know how you tested it.
+You may use standard and open-source libraries, and you may consult online materials or books.
