@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import pandas
 
 from scrapper import scrape_url
@@ -15,9 +15,7 @@ def calculate_tfidf(url : str, limit : int = 10):
     scraped_text : str | None = scrape_url(url)
     
     if (scraped_text is None):
-        return{
-            "Error":"500" 
-        }
+        raise HTTPException(status_code=404, detail="URL not found")
 
     documents = news_dataset["title_and_content"].to_list()
     documents.append(scraped_text)

@@ -5,9 +5,11 @@ from urllib.parse import unquote
 # URLs can be received encoded. To be on the safe side, we decode into them into text
 def scrape_url(url:str):
 
-    response = requests.get(unquote(url))
-
-    if(response.status_code != 200):
+    try:
+        response = requests.get(unquote(url))
+    
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
         return None
         
     soup = BeautifulSoup(response.content, "html.parser")
