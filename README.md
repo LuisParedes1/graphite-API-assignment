@@ -39,3 +39,21 @@ This will enable the endpoint at `http://127.0.0.1:8000`
 # Open API Documentation in OpenAPI (Swagger)
 
 You can find the API's documentation at `http://127.0.0.1:8000/docs`
+
+# TF-IDF
+
+To determine the TF-IDF for a given corpus D we use [sklearn's TfidfVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html)
+
+Having `smooth_idf=True` (default value) TfidfVectorizer uses the following formulas
+
+$$idf(t) = ln (\frac{N+1}{1+ df(t)}) + 1$$
+
+where $N$ is the total number of documents in the document set and $df(t)$ is the document frequency of $t$; the document frequency is the number of documents in the document set that contain the term t.
+
+$$tf(t,d) = f_{t,d}$$
+
+where $f_{t,d}$ is the frequency of the term $t$ in the document $d$
+
+And finally, for each term in each document
+
+$$tfidf(t,d) = tf(t,d) \times idf(t)$$
