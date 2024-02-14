@@ -46,10 +46,14 @@ To determine the TF-IDF for a given corpus D we use [sklearn's TfidfVectorizer](
 
 Having `smooth_idf=True` (default value) TfidfVectorizer uses the following formulas
 
-$$idf(t,D) = ln (\frac{N+1}{1+|\{d \in D:t\in d \}|}) + 1$$
+$$idf(t) = ln (\frac{N+1}{1+ df(t)}) + 1$$
 
-where $n$ is the total number of documents in the document set and $df(t)$ is the document frequency of $t$; the document frequency is the number of documents in the document set that contain the term t.
+where $N$ is the total number of documents in the document set and $df(t)$ is the document frequency of $t$; the document frequency is the number of documents in the document set that contain the term t.
 
 $$tf(t,d) = f_{t,d}$$
 
 where $f_{t,d}$ is the frequency of the term $t$ in the document $d$
+
+And finally, for each term in each document
+
+$$tfidf(t,d) = tf(t,d) \times idf(t)$$
