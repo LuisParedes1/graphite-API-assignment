@@ -9,7 +9,7 @@ def scrape_url(url:str):
         response = requests.get(unquote(url))
     
         response.raise_for_status()
-    except requests.exceptions.HTTPError as err:
+    except requests.exceptions.RequestException as e:
         return None
         
     soup = BeautifulSoup(response.content, "html.parser")
