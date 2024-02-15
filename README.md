@@ -15,11 +15,12 @@ This project was generated using fastapi framework.
 
 Install dependencies from [requirements.txt](./requirements.txt) using
 
-`pip install -r requirements.txt`
+`pip3 install -r requirements.txt`
 
 If you use Anaconda for environment management, you can recreate the environment using
 
-`conda env create --file requirements.txt`
+`conda activate [env_name]`
+`pip3 install -r requirements.txt`
 
 ## Execute the API
 
