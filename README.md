@@ -7,7 +7,7 @@ the page according to the [all-the-news database](https://www.kaggle.com/snapcra
 
 Please download the [all-the-news database](https://www.kaggle.com/snapcrack/all-the-news) and extract the files in the projects root directory.
 
-Make sure `articles1.csv`, `articles2.csv` and `articles3.csv` are inside the "archive" folder because the program will look inside that folder to obtain the dataset to train the model.
+Make sure `articles1.csv`, `articles2.csv` and `articles3.csv` are inside the "archive" folder because the program will look inside that folder to obtain the datasets in order to train the model.
 
 ## Installing Dependencies
 
@@ -19,14 +19,15 @@ Install dependencies from [requirements.txt](./requirements.txt) using
 
 If you use Anaconda for environment management, you can recreate the environment using
 
-1. `conda activate [env_name]` or `conda create --name [env_name] python=3.9`
-2. `pip3 install -r requirements.txt`
+1. `conda create --name [env_name] python=3.9`
+2. `conda activate [env_name]`
+3. `pip3 install -r requirements.txt`
 
 ## Execute the API
 
 By default FastAPI uses address `http://127.0.0.1` and port `8000`
 
-In the root directory, run `uvicorn main:app --reload`
+In the root directory run: `uvicorn main:app --reload`
 
 This may take a few minutes because it's training the model each time the API is enabled.
 
@@ -128,7 +129,12 @@ Now, for each term in the new document, we would look for the term in the IDF ta
 
 $$idf(t) = ln (\frac{N+1}{1+ df(t)}) + 1$$
 
-Keep in mind that we know the value of $N$ (number of documents) and that we also know the current value of $idf(t)$ (the one from the IDF table) so we can obtain $df(t)$ by isolating it from the equation.
+Keep in mind that:
+
+- We know the value of $N$ (number of documents)
+- We also know the current value of $idf(t)$ (the one from the IDF table)
+
+so we can obtain $df(t)$ by isolating it from the equation.
 
 Afterwards, we can calculate the new value of $idf(t)$ by having $N=N+1$ and $df(t)=df(t)+1$
 
