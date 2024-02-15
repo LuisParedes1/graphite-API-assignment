@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
+import starlette.status as status
 from scrapper import scrape_url
 from utils import preprocessDocument
 import pickle
@@ -8,7 +10,10 @@ app = FastAPI()
 # Loading the trained model when the API starts
 tfidf_model = pickle.load(open("tfidf_vectorizer_model.joblib", 'rb'))
 
-@app.get("/tfidf")
+@app.get("/tfidf", 
+         description="""This endpoint takes a URL and returns the 
+            terms with the highest TF-IDF on the page.""", 
+         summary="The pages' top terms with the highest TF-IDF")
 def calculate_tfidf(url : str, limit : int = 10):
 
     parsed_website : str | None = scrape_url(url)
@@ -31,3 +36,7 @@ def calculate_tfidf(url : str, limit : int = 10):
             } for term, tfidf in ordered_tfidf_url_page[:limit]
         ]
     }
+
+@app.get("/" , include_in_schema=False)
+def main():
+    return RedirectResponse(url="/docs", status_code=status.HTTP_302_FOUND)

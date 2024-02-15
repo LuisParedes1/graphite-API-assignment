@@ -7,7 +7,7 @@ the page according to the [all-the-news database](https://www.kaggle.com/snapcra
 
 This project was generated using fastapi framework.
 
-Install dependencies from requirements.txt using
+Install dependencies from [requirements.txt](./requirements.txt) using
 
 `pip install -r requirements.txt`
 
@@ -17,14 +17,14 @@ If you use Anaconda for environment management, you can recreate the environment
 
 # Data Analysis
 
-Inside of the [Jupyter Notebook](./DataAnalysis.ipynb) we do an inital data analysis to see what we are working with and check for any NaN values.
+Inside of the [Jupyter Notebook](./DataAnalysis.ipynb) we do an inital data analysis to see what we are working with and check for any NaN values to clean.
 
-We finish by concatenating all three datasets into a single one which we'll use for the project.
+We finish by concatenating all three datasets into a single dataset and doing some pre-processing before training the model.
 
 To run the notebook:
 
-- conda activate (this will activate the base environment)
-- jupyter-notebook DataAnalysis.ipynb
+- `conda activate [env]`
+- `jupyter-notebook DataAnalysis.ipynb`
 - Run the cells (cntl+enter)
 
 # Execute the API
@@ -33,7 +33,7 @@ By default FastAPI uses address `http://127.0.0.1` and port `8000`
 
 In the root directory, run `uvicorn main:app --reload`
 
-This will enable the endpoint at `http://127.0.0.1:8000`
+This will enable the endpoint at `http://127.0.0.1:8000`. By default it will redirect to the API Documentation Page
 
 ## Open API Documentation in OpenAPI (Swagger)
 
