@@ -89,7 +89,9 @@ To improve the results we can
 
 # Updating the IDF values based on new documents
 
-In `TfidfVectorizer` model, the IDF values are calculated during the fitting process and are not updatable like an online learning model (such as [SGDClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html)) could.
+Theoretically, an idf is constant per corpus (see [here](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Example_of_tf%E2%80%93idf)) so updating it means recalculating the idf per term.
+
+On the `TfidfVectorizer` model, the IDF values are calculated during the fitting process and are not updatable like an online learning model (such as [SGDClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html)) could.
 
 This means that **we need to re-train the model** with the new document added to the document set in order to update the IDF values of the `TfidfVectorizer`.
 
@@ -108,3 +110,5 @@ A basic implementation of this would be
     # Updates the IDF values
     tfidf_vectorizer.fit_transform(corpus)
 ```
+
+Both `fit_transform` and `fit` methods update the IDF values of the `TfidfVectorizer`
