@@ -1,11 +1,7 @@
 from bs4 import BeautifulSoup
-import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas
-
-# postcondition: Returns a clean document.
-def cleanDocument(document:str):
-    return document.replace('\n', '').replace('\t', '').lower()
+from cleanDocument import cleanDocument
 
 # precondition: Receive a BeautifulSoup class which contains the parsed website
 # postcondition: Returns a clean document to use in the transform
@@ -24,7 +20,7 @@ def preprocessDocument(parsed_website:BeautifulSoup):
 
     return cleanDocument(title_and_content)
 
-
+# For step by step in traning the model, see DataAnalysis.ipynb
 # postcondition: Returns the tf-idf model
 def trainModel():
 

@@ -39,7 +39,7 @@ You can find the API's documentation at `http://127.0.0.1:8000/docs`
 
 Inside of the [Jupyter Notebook](./DataAnalysis.ipynb) we do an inital data analysis to see what we are working with and check for any NaN values to clean.
 
-This Notebook is also used to understand step by step how the program works by performing a Case Study: Getting the top TF-IDF terms for wikipedia tf-idf
+This Notebook is also used to understand step by step what the API does by performing a Case Study: "Getting the top TF-IDF terms for wikipedia tf-idf"
 
 To run the notebook:
 
@@ -73,19 +73,23 @@ $$tfidf(t,d) = tf(t,d) \times idf(t)$$
 
 # TF-IDF Model
 
-We train the [`TfidfVectorizer`](jhttps://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) using the pre-processed `all-the-news` dataset.
+1. We train the [`TfidfVectorizer`](jhttps://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) using the pre-processed `all-the-news` dataset.
 
-Using this trained model we then transform the new document (the url scraped document) and obtain its TF-IDF terms.
+2. We scrape the url to obtain the new document. We apply the same pre-processing to clean the data.
 
-We ordered this terms in descending order and return the top `limit=10` terms as the API response.
+3. Using the trained model we transform the new document and obtain its TF-IDF terms.
+
+4. We ordered this terms in descending order and return the top `limit=10` terms as the API response.
 
 # Further Improvements
 
 To improve the results we can
 
 - Manually implement a tokenizer that discards unintentional tokens (such as numerical tokens and symbols) but keeps intentional ones (for example U.S.A)
-- Scrape from the new website header 2 and header 3 values (if available) and remove irrelevant aspects such as ads and maybe comments
-- Use a larger training set
+- For every document's pre-processing, convert number to text and try to improve the stemming.
+- Scrape from the new website header 2 and header 3 values (if available) and remove irrelevant info such as ads and maybe comments.
+- Use a larger diverse training set.
+- We could use [HashingVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.HashingVectorizer.html) model for memory efficiency. This however comes with some compromises like no IDF weighting.
 
 # Updating the IDF values based on new documents
 
