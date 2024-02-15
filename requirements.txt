@@ -1,6 +1,6 @@
+beautifulsoup4==4.12.3
+fastapi==0.109.2
+Requests==2.31.0
 pandas==2.2.0
-fastapi==
-'uvicorn[standard]'==
+'uvicorn[standard]'
 scikit-learn==1.4.0
-requests==
-beautifulsoup4==
