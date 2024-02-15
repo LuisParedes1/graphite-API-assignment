@@ -80,7 +80,7 @@ $$tfidf(t,d) = tf(t,d) \times idf(t)$$
 
 3. Using the trained model we transform the new document and obtain its TF-IDF terms.
 
-4. We ordered this terms in descending order and return the top `limit=10` terms as the API response.
+4. We order this terms in descending order and return the top `limit=10` terms as the API response.
 
 # Further Improvements
 
