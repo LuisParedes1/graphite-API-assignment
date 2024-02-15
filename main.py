@@ -20,8 +20,8 @@ def calculate_tfidf(url : str, limit : int = 10):
 
     tfidf_url_page = tfidf_model.transform([scraped_document]).toarray()[0]
 
-    ordered_tfidf_url_page = sorted(zip(tfidf_model.get_feature_names_out(),
-                                    tfidf_url_page), key=lambda x: x[1], reverse=True )
+    ordered_tfidf_url_page = sorted( zip(tfidf_model.get_feature_names_out(), tfidf_url_page), 
+                                    key=lambda x: x[1], reverse=True )
     
     return {
         "terms": [
