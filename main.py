@@ -1,9 +1,7 @@
 from fastapi import FastAPI, HTTPException
-
 from scrapper import scrape_url
-from sklearn.feature_extraction.text import TfidfVectorizer
+from utils import preprocessDocument
 import pickle
-
 
 app = FastAPI()
 
@@ -13,11 +11,12 @@ tfidf_model = pickle.load(open("tfidf_vectorizer_model.joblib", 'rb'))
 @app.get("/tfidf")
 def calculate_tfidf(url : str, limit : int = 10):
 
-    scraped_document : str | None = scrape_url(url)
+    parsed_website : str | None = scrape_url(url)
     
-    if (scraped_document is None):
+    if (parsed_website is None):
         raise HTTPException(status_code=404, detail="URL not found")
     
+    scraped_document = preprocessDocument(parsed_website)
 
     tfidf_url_page = tfidf_model.transform([scraped_document]).toarray()[0]
 
