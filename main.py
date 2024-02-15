@@ -7,7 +7,7 @@ import pickle
 
 app = FastAPI()
 
-# Loading the trained model
+# Loading the trained model when the API starts
 tfidf_model = pickle.load(open("tfidf_vectorizer_model.joblib", 'rb'))
 
 @app.get("/tfidf")
