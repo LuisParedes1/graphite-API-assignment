@@ -106,7 +106,7 @@ A basic implementation of this would be
     corpus = train_dataset + [scraped_document]
 
     # Updates the IDF values
-    tfidf_vectorizer.fit_transform(corpus) # `fit` method also update the IDF values of the `TfidfVectorizer`
+    tfidf_vectorizer.fit_transform(corpus) # `fit` method also update the IDF values
 ```
 
 We could; however, update the IDF values manually using `tfidf_vectorizer.idf_`
@@ -125,10 +125,14 @@ this returns a DataFrame like this
 | ...      |  ...  |
 | "term-n" | 0.111 |
 
-Now, for each term in the new document, we would look for the term in the IDF table and recalculate it's IDF value using the $idf(t) = ln (\frac{N+1}{1+ df(t)}) + 1$ formula.
+Now, for each term in the new document, we would look for the term in the IDF table and recalculate it's IDF value using the $idf(t)$ formula.
+
+$$idf(t) = ln (\frac{N+1}{1+ df(t)}) + 1$$
 
 Keep in mind that we know the value of $N$ (number of documents) and that we also know the current value of $idf(t)$ (the one from the IDF table) so we can obtain $df(t)$ by isolating it from the equation.
 
 Afterwards, we can calculate the new value of $idf(t)$ by having $N=N+1$ and $df(t)=df(t)+1$
 
-If the dataset is very large, this process might be a viable option.
+With this process we can handle updates to the IDF values based on new documents received by the endpoints. Also, having the new IDF values, we can obtain the term frequency ($tf(t)$) for each term of the new document and calculate it's $tf-idf = tf(t) \times idf(t)$ value.
+
+This way we can keep the IDF and TF-IDF values updated without having to retrain the model for every new document.
