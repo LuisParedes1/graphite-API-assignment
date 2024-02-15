@@ -89,11 +89,9 @@ To improve the results we can
 
 # Updating the IDF values based on new documents
 
-Theoretically, an idf is constant per corpus (see [here](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Example_of_tf%E2%80%93idf)) so updating it means recalculating the idf per term.
-
 On the `TfidfVectorizer` model, the IDF values are calculated during the fitting process and are not updatable like an online learning model (such as [SGDClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html)) could.
 
-This means that **we need to re-train the model** with the new document added to the document set in order to update the IDF values of the `TfidfVectorizer`.
+This means that, in order to update the IDF values of the `TfidfVectorizer` model, **we need to re-train the model** with the new document added to the document set .
 
 A basic implementation of this would be
 
@@ -108,7 +106,29 @@ A basic implementation of this would be
     corpus = train_dataset + [scraped_document]
 
     # Updates the IDF values
-    tfidf_vectorizer.fit_transform(corpus)
+    tfidf_vectorizer.fit_transform(corpus) # `fit` method also update the IDF values of the `TfidfVectorizer`
 ```
 
-Both `fit_transform` and `fit` methods update the IDF values of the `TfidfVectorizer`
+We could; however, update the IDF values manually using `tfidf_vectorizer.idf_`
+
+```python
+pandas.DataFrame(tfidf.idf_, index=tfidf.get_feature_names_out(), columns=["TF-IDF"])
+```
+
+this returns a DataFrame like this
+
+| term     |  IDF  |
+| -------- | :---: |
+| "term-1" | 0.01  |
+| "term-2" | 0.123 |
+| "term-3" | 0.321 |
+| ...      |  ...  |
+| "term-n" | 0.111 |
+
+Now, for each term in the new document, we would look for the term in the IDF table and recalculate it's IDF value using the $idf(t) = ln (\frac{N+1}{1+ df(t)}) + 1$ formula.
+
+Keep in mind that we know the value of $N$ (number of documents) and that we also know the current value of $idf(t)$ (the one from the IDF table) so we can obtain $df(t)$ by isolating it from the equation.
+
+Afterwards, we can calculate the new value of $idf(t)$ by having $N=N+1$ and $df(t)=df(t)+1$
+
+If the dataset is very large, this process might be a viable option.
