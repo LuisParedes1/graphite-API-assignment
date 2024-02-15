@@ -19,9 +19,8 @@ Install dependencies from [requirements.txt](./requirements.txt) using
 
 If you use Anaconda for environment management, you can recreate the environment using
 
-`conda activate [env_name]` or `conda create --name [env_name] python=3.8`
-
-`pip3 install -r requirements.txt`
+1. `conda activate [env_name]` or `conda create --name [env_name] python=3.9`
+2. `pip3 install -r requirements.txt`
 
 ## Execute the API
 
