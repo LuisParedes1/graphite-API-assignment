@@ -27,7 +27,6 @@ def preprocessDocument(parsed_website:BeautifulSoup):
 
 # postcondition: Returns the tf-idf model
 def trainModel():
-    #return pickle.load(open("tfidf_vectorizer_model.joblib", 'rb'))
 
     articles1 = pandas.read_csv("./archive/articles1.csv")
     articles2 = pandas.read_csv("./archive/articles2.csv")
