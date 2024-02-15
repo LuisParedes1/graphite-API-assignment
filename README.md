@@ -127,6 +127,6 @@ Keep in mind that we know the value of $N$ (number of documents) and that we als
 
 Afterwards, we can calculate the new value of $idf(t)$ by having $N=N+1$ and $df(t)=df(t)+1$
 
-With this process we can handle updates to the IDF values based on new documents received by the endpoints. Also, having the new IDF values, we can obtain the term frequency ( $tf(t)$ ) for each term of the new document and calculate it's $\text_rm{tf-idf} = tf(t) \times idf(t)$ value.
+With this process we can handle updates to the IDF values based on new documents received by the endpoints. Also, having the new IDF values, we can obtain the term frequency ( $tf(t)$ ) for each term of the new document and calculate it's $\textrm{tf-idf} = tf(t) \times idf(t)$ value.
 
 This way we can keep the IDF and TF-IDF values updated without having to retrain the model for every new document.
