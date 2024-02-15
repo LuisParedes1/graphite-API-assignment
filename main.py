@@ -2,13 +2,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import RedirectResponse
 import starlette.status as status
 from scrapper import scrape_url
-from utils import preprocessDocument
-import pickle
+from utils import preprocessDocument, trainModel
 
 app = FastAPI()
 
-# Loading the trained model when the API starts
-tfidf_model = pickle.load(open("tfidf_vectorizer_model.joblib", 'rb'))
+# Train model when the API starts
+tfidf_model = trainModel()
 
 @app.get("/tfidf", 
          description="""This endpoint takes a URL and returns the 
