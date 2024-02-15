@@ -1,0 +1,6 @@
+pandas==2.2.0
+fastapi==
+'uvicorn[standard]'==
+scikit-learn==1.4.0
+requests==
+beautifulsoup4==
