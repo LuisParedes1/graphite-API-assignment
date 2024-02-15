@@ -15,18 +15,6 @@ If you use Anaconda for environment management, you can recreate the environment
 
 `conda env create --file requirements.txt`
 
-# Data Analysis
-
-Inside of the [Jupyter Notebook](./DataAnalysis.ipynb) we do an inital data analysis to see what we are working with and check for any NaN values to clean.
-
-We finish by concatenating all three datasets into a single dataset and doing some pre-processing before training the model.
-
-To run the notebook:
-
-- `conda activate [env]`
-- `jupyter-notebook DataAnalysis.ipynb`
-- Run the cells (cntl+enter)
-
 # Execute the API
 
 By default FastAPI uses address `http://127.0.0.1` and port `8000`
@@ -44,6 +32,18 @@ You can find the API's documentation at `http://127.0.0.1:8000/docs`
 To run the tests please run from the root directory `python3 -m unittest test_*.py`
 
 Remember to enable the endpoint before running integration tests.
+
+# Data Analysis
+
+Inside of the [Jupyter Notebook](./DataAnalysis.ipynb) we do an inital data analysis to see what we are working with and check for any NaN values to clean.
+
+We finish by concatenating all three datasets into a single dataset and doing some pre-processing before training the model.
+
+To run the notebook:
+
+- `conda activate [env]`
+- `jupyter-notebook DataAnalysis.ipynb`
+- Run the cells (cntl+enter)
 
 # TF-IDF
 
