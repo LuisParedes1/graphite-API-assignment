@@ -91,25 +91,19 @@ To improve the results we can
 
 On the `TfidfVectorizer` model, the IDF values are calculated during the fitting process and are not updatable like an online learning model (such as [SGDClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html)) could.
 
-This means that, in order to update the IDF values of the `TfidfVectorizer` model, **we need to re-train the model** with the new document added to the document set .
-
-A basic implementation of this would be
+This means that, in order to update the IDF values of the `TfidfVectorizer` model, **we need to re-train the model** with the new document added to the document set.
 
 ```python
     ...
 
-    # We obtain the clean document
-    parsed_website = scrape_url(url)
-    scraped_document = preprocessDocument(parsed_website)
-
     # Add the document to the set of documents
-    corpus = train_dataset + [scraped_document]
+    corpus = train_dataset + [new_document]
 
     # Updates the IDF values
     tfidf_vectorizer.fit_transform(corpus) # `fit` method also update the IDF values
 ```
 
-We could; however, update the IDF values manually using `tfidf_vectorizer.idf_`
+We could; however, update the IDF values manually. Using the model's current IDF values: `tfidf_vectorizer.idf_`
 
 ```python
 pandas.DataFrame(tfidf.idf_, index=tfidf.get_feature_names_out(), columns=["TF-IDF"])
