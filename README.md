@@ -5,7 +5,7 @@ the page according to the [all-the-news database](https://www.kaggle.com/snapcra
 
 # Getting Started
 
-Please download the [all-the-news database](https://www.kaggle.com/snapcrack/all-the-news) and extract the files.
+Please download the [all-the-news database](https://www.kaggle.com/snapcrack/all-the-news) and extract the files in the projects root directory.
 
 Make sure `articles1.csv`, `articles2.csv` and `articles3.csv` are inside the "archive" folder because the program will look inside that folder to obtain the dataset to train the model.
 
